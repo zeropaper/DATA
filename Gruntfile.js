@@ -275,6 +275,8 @@ module.exports = function (grunt) {
           '{<%= config.src %>,.grunt}/templates/client/partials/*.hbs'
         ],
         helpers: [
+          'handlebars-helpers',
+          'handlebars-helper-md',
           'handlebars-helper-moment',
           '<%= config.src %>/scripts/hbs-helpers.js'
         ]

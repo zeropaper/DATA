@@ -41,6 +41,15 @@ module.exports.register = function (Handlebars, options, params) {
   Handlebars.registerHelper('eachSorted', function (arr, prop, block) {
     var str = '';
 
+    // convert object to array if needed
+    if (arr && !arr.slice) {
+      var array = [];
+      for (var k in arr) {
+        array.push(arr[k]);
+      }
+      arr = array;
+    }
+
     arr = (arr || [])
       .slice()
       .sort(function (a, b) {
