@@ -1,0 +1,44 @@
+<ul class="commits">
+{{#eachSorted this "committerDate"}}
+  <li data-commit-hash="{{ this.hash }}">
+    <div class="meta">
+      <span class="author-date"
+            title="{{moment this.authorDate fromNow=""}}"
+            data-date="{{ this.authorDate }}">
+        {{> datetime this.authorDate}}
+      </span>
+
+      <h2>{{#if this.conventional}}
+        <span class="type">{{this.conventional.type}}</span>
+        <span class="scope">({{this.conventional.scope}}):</span>
+        {{ this.conventional.subject }}
+        {{else}}{{ this.subject }}{{/if}}
+      </h2>
+
+      <span class="author-name">{{ this.authorName }}</span>
+
+      <a class="gh-commit"
+         target="_blank"
+         href="https://github.com/zeropaper/DATA/commit/{{ this.hash }}">on GitHub</a>
+    </div>
+
+    {{#if this.commitNotes }}<h5>Notes</h5>
+    <div class="commit-notes">
+      {{ this.commitNotes }}
+    </div>{{/if}}
+
+    {{#if this.body }}<h5>Information</h5>
+    <div class="body">
+      {{ this.body }}
+    </div>{{/if}}
+
+    {{#if this.stat }}<h5>Changes</h5>
+    <ul class="stat files">
+      {{#each this.stat}}
+      <li>{{ @key }}</li>
+      {{/each}}
+    </ul>{{/if}}
+
+  </li>
+{{/eachSorted}}
+</ul>

@@ -1,0 +1,15 @@
+<footer class="page">
+  <nav>
+    <ul>
+    {{#eachSorted pages "data.weight"}}
+      <li {{#if this.isCurrentPage}}class="active"{{/if}}>
+        {{#if this.isCurrentPage}}
+        {{this.data.title}}
+        {{else}}
+        <a href="{{this.relativeLink}}">{{this.data.title}}</a>
+        {{/if}}
+      </li>
+    {{/eachSorted}}
+    </ul>
+  </nav>
+</footer>

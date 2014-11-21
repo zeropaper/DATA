@@ -1,0 +1,27 @@
+---
+weight: 30
+title: History
+description: 'History of the manifest'
+tags:
+  - Manifest
+  - DATA
+  - Evolution
+  - History
+  - Chronology
+---
+<section id="history">
+  <section id="manifest">
+    <header>
+      <h1>Manifest &amp; FAQ history</h1>
+    </header>
+    {{> commits this.git-log-master}}
+  </section>
+
+  <section id="site">
+    <header>
+      <h1>Website history</h1>
+    </header>
+    {{> commits this.git-log-site}}
+  </section>
+</section>
+
