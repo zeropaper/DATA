@@ -1,6 +1,8 @@
-# DATAsite
+# DATA site
 
 > site branch of the DATA repository.
+
+The [master branch of the DATA repository](https://github.com/zeropaper/DATA/tree/master) is aimed for the development of the manifest.
 
 
 ## Tools and features
