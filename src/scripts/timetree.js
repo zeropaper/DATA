@@ -93,6 +93,9 @@ function compareValues(a, b) {
 }
 
 
+function startWithZero(number) {
+  return ('' + number).length === 1 ? ('0' + number) : number;
+}
 
 
 TimeTree.prototype.add = function (item, options) {
@@ -136,11 +139,11 @@ TimeTree.prototype.add = function (item, options) {
 
   var minute = byValue(hour.items, parts.minute);
   if (!minute) {
-    minute = { value: parts.minute, label: parts.minute, items: [] };
+    minute = { value: parts.minute, label: startWithZero(parts.minute), items: [] };
     hour.items.push(minute);
     hour.items.sort(compareValues);
-    minute.items.push(item.body);
   }
+  minute.items.push(item.body);
 
   return this;
 };

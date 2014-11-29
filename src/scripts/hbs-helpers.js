@@ -3,36 +3,35 @@ module.exports.register = function (Handlebars) {
   var atPath = require('./at-path');
   var TimeTree = require('./timetree');
 
-  Handlebars.registerHelper('timetree', function (objects, prop, block) {
-    // convert object to array if needed
+  function toArray(objects) {
     if (objects && !objects.slice) {
       objects = Object.keys(objects).map(function (key) { return objects[key]; });
     }
+    return objects;
+  }
 
-    var timeTree = new TimeTree(objects.map(function (item) {
-      item.body = (block.fn ? block.fn : block)(item);
-      return item;
-    }), {
-      dateProp: prop
-    });
+
+  Handlebars.registerHelper('timetree', function (objects, prop, block) {
+    var timeTree = new TimeTree(toArray(objects).map(function (item) {
+      return {
+        date: item[prop],
+        body: (block.fn ? block.fn : block)(item)
+      };
+    }));
 
     return timeTree.render();
   });
 
 
-  Handlebars.registerHelper('eachSorted', function (arr, prop, block) {
+  Handlebars.registerHelper('eachSorted', function (objects, prop, block) {
     var str = '';
-
-    // convert object to array if needed
-    if (arr && !arr.slice) {
-      var array = [];
-      for (var k in arr) {
-        array.push(arr[k]);
-      }
-      arr = array;
+    if (arguments.length < 3) {
+      return 'eachSorted helper needs 2 parameters';
     }
 
-    arr = (arr || [])
+    objects = toArray(objects);
+
+    objects = (objects || [])
       .slice()
       .sort(function (a, b) {
         var x = parseInt(atPath(a, prop) || 0, 10);
