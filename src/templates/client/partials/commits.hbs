@@ -1,6 +1,6 @@
 <div class="commits">
-{{#timetree this "committerDate"}}
-  <div data-commit-hash="{{ this.hash }}">
+{{#timetree this "authorDate"}}
+  <div id="{{ this.hash }}">
     <div class="meta">
       <h2>{{#if this.conventional}}
         <span class="type">{{this.conventional.type}}</span>

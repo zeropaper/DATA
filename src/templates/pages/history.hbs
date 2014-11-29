@@ -9,6 +9,17 @@ tags:
   - History
   - Chronology
 ---
+<nav>
+  <h4><a href="#manifest">Manifest &amp; FAQ history</a></h4>
+  {{#timetree this.git-log-master "authorDate"}}
+    <a href="#{{this.hash}}">{{this.subject}}</a>
+  {{/timetree}}
+
+  <h4><a href="#site">Website history</a></h4>
+  {{#timetree this.git-log-site "authorDate"}}
+    <a href="#{{this.hash}}">{{this.subject}}</a>
+  {{/timetree}}
+</nav>
 <section id="history">
   <section id="manifest">
     <header>
@@ -24,4 +35,3 @@ tags:
     {{> commits this.git-log-site}}
   </section>
 </section>
-
