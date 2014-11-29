@@ -259,7 +259,6 @@ section#history {
 }
 
 
-@date-size: 120px;
 
 .commits {
   padding: 0;
@@ -276,14 +275,17 @@ section#history {
     border-top: 1px dotted #333;
   }
 
-  h2 > span {
-    font-family: monospace;
-    font-size: 60%;
-    color: #555;
-    &:last-of-type {
-      &:after {
-        display: block;
-        content: ''
+  h2 {
+    margin-top: 0px;
+    > span {
+      font-family: monospace;
+      font-size: 60%;
+      color: #555;
+      &:last-of-type {
+        &:after {
+          display: block;
+          content: ''
+        }
       }
     }
   }
@@ -294,41 +296,53 @@ section#history {
   }
 }
 
-.author-date {
-  position: absolute;
-  left: (33% / 2);
-  margin-left: (0 - (@date-size / 2));
-  top: 4em;
-  width: @date-size;
-  height: 0;
-  padding-bottom: @date-size;
-  border-radius: @date-size * 2;
-  background: #111;
-  text-align: center;
+
+
+@import "max-lengthed-list";
+
+
+
+@import "timetree";
+
+
+
+.date-label {
   .header-font();
-  color: #ddd;
+  font-size: 1.5em;
+}
 
-  // box-shadow: 0 2px 2px #000 inset;
-  // text-shadow: 0 2px 2px #000;
-
-  .day,
-  .month,
-  .year,
-  .time {
-    display: block;
-    height: (@date-size - 20px) / 4;
-    line-height: (@date-size - 20px) / 4;
+.day,
+.minute {
+  > .date-items {
+    width: 87%;
   }
-  .day,
-  .month,
-  .year {
-    font-size: 110%;
-  }
-  .day {
-    margin-top: 10px;
-  }
-  .time {
-    margin-bottom: 10px;
+  > .date-label {
+    width: 13%;
   }
 }
 
+.year {
+  > .date-label {
+    text-align: right;
+  }
+}
+
+.month {
+  > .date-label {
+    text-align: center;
+  }
+}
+
+.hour {
+  > .date-items {
+    width: 93%;
+  }
+  > .date-label {
+    width: 7%;
+    text-align: right;
+  }
+}
+
+.timetree li.timetree-item {
+  padding-bottom: 3rem;
+}
