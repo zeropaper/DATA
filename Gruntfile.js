@@ -384,7 +384,7 @@ module.exports = function (grunt) {
 
 
     fetch: {
-      FAQ: {
+      texts: {
         files: [
           {
             src: 'https://raw.github.com/<%= (config.DATAauthor +"/"+ config.DATArepo) %>/master/FAQ.md',
@@ -393,10 +393,17 @@ module.exports = function (grunt) {
           {
             src: 'https://raw.github.com/<%= (config.DATAauthor +"/"+ config.DATArepo) %>/master/DATAmanifest.md',
             dest: '.grunt/content/manifest.md'
-          },
+          }
+        ]
+      },
+      data: {
+        options: {
+          headers: {'user-agent': 'node.js'}
+        },
+        files: [
           {
-            src: 'http://adodson.com/hello.js/dist/hello.all.js',
-            dest: '.grunt/assets/js/hello.all.js'
+            src: 'https://api.github.com/repos/<%= (config.DATAauthor +"/"+ config.DATArepo) %>/issues',
+            dest: '.grunt/data/issues.json'
           }
         ]
       }
