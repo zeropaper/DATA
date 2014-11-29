@@ -1,41 +1,23 @@
 'use strict';
-module.exports.register = function (Handlebars, options, params) {
-  /**
-   * Utility to get a value deep in a object.
-   *
-   * @param {Object} obj          - an object to dig in
-   * @param {string} varPath      - the path at which the value is searched
-   * @returns {*}
-   */
-  function atPath(obj, varPath, splitter) {
-    var paths = varPath.split(splitter || '.');
-    var current = obj;
-    var i;
-    var val;
-    var name;
-    var set;
-    var setNow;
+module.exports.register = function (Handlebars) {
+  var atPath = require('./at-path');
+  var TimeTree = require('./timetree');
 
-    if (!varPath) {
-      throw new Error('Missing argument, `obj` and `path` are required.');
+  Handlebars.registerHelper('timetree', function (objects, prop, block) {
+    // convert object to array if needed
+    if (objects && !objects.slice) {
+      objects = Object.keys(objects).map(function (key) { return objects[key]; });
     }
 
-    for (i = 0; i < paths.length; ++i) {
-      name = paths[i];
-      val = current[name];
+    var timeTree = new TimeTree(objects.map(function (item) {
+      item.body = (block.fn ? block.fn : block)(item);
+      return item;
+    }), {
+      dateProp: prop
+    });
 
-      if (typeof val === 'undefined') {
-        if (i === paths.length - 1) { return; }
-        current[name] = val || {};
-        current = current[name];
-      }
-      else {
-        current = val;
-      }
-    }
-
-    return current;
-  }
+    return timeTree.render();
+  });
 
 
   Handlebars.registerHelper('eachSorted', function (arr, prop, block) {

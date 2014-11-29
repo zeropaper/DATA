@@ -1,0 +1,44 @@
+.timetree {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  > li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+  }
+
+  .date-items,
+  .date-label {
+    // position: relative;
+    margin: 0;
+    padding: 0;
+    float: left;
+    overflow: hidden;
+  }
+
+  .date-items {
+    width: 90%;
+    > li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      overflow: hidden;
+    }
+  }
+
+  .date-label {
+    width: 10%;
+  }
+
+  .day > .date-label:after {
+    position: relative;
+    content: ',';
+  }
+
+  .hour > .date-label:after {
+    position: relative;
+    content: ':';
+  }
+}
