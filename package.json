@@ -41,7 +41,7 @@
     "grunt-jscs": "~0.8.1",
     "grunt-mocha": "^0.4.11",
     "grunt-mocha-cli": "~1.10.0",
-    "handlebars": "~1.3.0",
+    "handlebars": "~4.7.6",
     "handlebars-helper-moment": "git://github.com/zeropaper/handlebars-helper-moment.git",
     "jquery": "^2.1.1",
     "load-grunt-tasks": "^0.6.0",
